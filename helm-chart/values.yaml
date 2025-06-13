@@ -1,0 +1,16 @@
+replicaCount: 3
+apiGatewayImage:
+  repository: "phwildzeiss/api-gateway"
+  tag: "0.0.1"
+  pullPolicy: IfNotPresent
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+
