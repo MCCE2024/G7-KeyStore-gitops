@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: tenants-helm
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/bennimoser/inenpt-gitops
+        revision: HEAD
+        directories:
+          - path: tenants/*
+        requeueAfterSeconds: 30
+  template:
+    metadata:
+      name: '{{path.basename}}-app'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/bennimoser/inenpt-gitops
+        targetRevision: HEAD
+        path: helm-app                          # Chart-Verzeichnis
+        helm:
+          valueFiles:
+            - '../{{path}}/values.yaml'            # Tenant-spezifische Werte
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'          # z. B. tenant-a
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
