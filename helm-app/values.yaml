@@ -1,8 +1,4 @@
-replicaCount: 3
-apiGatewayImage:
-  repository: "phwildzeiss/api-gateway"
-  tag: "0.0.1"
-  pullPolicy: IfNotPresent
+tenantName: "test-tenant"
 resources:
   requests:
     memory: "128Mi"
