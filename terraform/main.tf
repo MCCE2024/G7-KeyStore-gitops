@@ -111,6 +111,8 @@ resource "kubernetes_namespace" "ingress_ns" {
   metadata {
     name = var.namespace_name_nginx
   }
+
+  depends_on = [null_resource.wait_for_kubeconfig]
 }
 
 resource "helm_release" "ingress_nginx" {
