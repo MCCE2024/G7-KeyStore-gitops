@@ -38,6 +38,8 @@ spec:
                 name: key-store-config
             - secretRef:
                 name: key-store-secret
+            - secretRef:
+                name: {{.Values.tenantName}}-db-secret
           resources:
             requests:
               memory: "{{.Values.resources.requests.memory}}"
