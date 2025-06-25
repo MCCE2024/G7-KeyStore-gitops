@@ -51,7 +51,7 @@ resource "kubernetes_secret" "db_secret" {
   data = {
     DB_USERNAME = data.exoscale_database_uri.tenant_db_uri.username
     DB_PASSWORD = data.exoscale_database_uri.tenant_db_uri.password
-    DB_URL      = "jdbc:postgresql://${data.exoscale_database_uri.tenant_db_uri.host}:${data.exoscale_database_uri.tenant_db_uri.port}/${var.db_name}"
+    DB_URL      = "jdbc:postgresql://${data.exoscale_database_uri.tenant_db_uri.host}:${data.exoscale_database_uri.tenant_db_uri.port}/defaultdb"
   }
 
   type = "Opaque"
