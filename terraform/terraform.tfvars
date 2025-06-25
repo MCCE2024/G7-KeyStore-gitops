@@ -1,4 +1,4 @@
-cluster_name = "my-first-sks-cluster"
+cluster_name         = "my-first-sks-cluster"
 namespace_name_nginx = "ingress-namespace"
 
 tenants = {
