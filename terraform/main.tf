@@ -112,7 +112,7 @@ resource "kubernetes_namespace" "ingress_ns" {
     name = var.namespace_name_nginx
   }
 
-  depends_on = [null_resource.wait_for_kubeconfig]
+  depends_on = [local_sensitive_file.kubeconfig]
 }
 
 resource "helm_release" "ingress_nginx" {
