@@ -35,3 +35,8 @@ variable "tenants" {
     exoscale_zone  = string
   }))
 }
+
+variable "namespace_name_nginx" {
+  type        = string
+  description = "Name of nginx namespace"
+}
