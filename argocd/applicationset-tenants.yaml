@@ -6,7 +6,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/bennimoser/inenpt-gitops
+        repoURL: https://github.com/MCCE2024/G7-KeyStore-gitops
         revision: HEAD
         directories:
           - path: tenants/*
@@ -17,7 +17,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/bennimoser/inenpt-gitops
+        repoURL: https://github.com/MCCE2024/G7-KeyStore-gitops
         targetRevision: HEAD
         path: helm-app                          # Chart-Verzeichnis
         helm:
