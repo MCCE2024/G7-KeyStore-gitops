@@ -107,7 +107,7 @@ module "tenants" {
 }
 
 # Kubernetes Namespace für den Mandanten
-resource "kubernetes_namespace" "tenant_ns" {
+resource "kubernetes_namespace" "ingress_ns" {
   metadata {
     name = var.namespace_name_nginx
   }
@@ -118,4 +118,6 @@ resource "helm_release" "ingress_nginx" {
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
   namespace  = var.namespace_name_nginx
+
+  depends_on = [kubernetes_namespace.ingress_ns]
 }
