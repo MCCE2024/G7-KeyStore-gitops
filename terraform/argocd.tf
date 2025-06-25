@@ -15,9 +15,9 @@ resource "helm_release" "argo_cd" {
 }
 
 locals {
-  repo_url = "https://github.com/MCCE2024/G7-KeyStore-gitops.git"
-  repo_path = "argocd"
-  app_name = "gitops-base"
+  repo_url      = "https://github.com/MCCE2024/G7-KeyStore-gitops.git"
+  repo_path     = "argocd"
+  app_name      = "gitops-base"
   app_namespace = "argocd"
 }
 
