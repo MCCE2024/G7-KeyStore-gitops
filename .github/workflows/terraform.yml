@@ -39,6 +39,19 @@ jobs:
         run: terraform init
         working-directory: terraform/
 
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: terraform/
+
+      - name: Terraform Format Check
+        run: terraform fmt -check
+        working-directory: terraform/
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -out=tfplan
+        working-directory: terraform/
+
       - name: Apply Cluster (Phase 1)
         run: terraform apply -target=exoscale_sks_cluster.my_sks_cluster -auto-approve
         working-directory: terraform/
