@@ -107,7 +107,7 @@ module "tenants" {
 }
 
 module "ingress" {
-  source               = "./modules/ingress"
+  source                 = "./modules/ingress"
   namespace_name_ingress = var.namespace_name_ingress
   providers = {
     exoscale   = exoscale
