@@ -12,7 +12,7 @@ spec:
   - http:
       paths:
       - path: "/{{.Values.tenantName}}"
-        pathType: prefix
+        pathType: Prefix
         backend:
           service:
             name: frontend
