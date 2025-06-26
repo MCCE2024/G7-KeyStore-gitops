@@ -1,9 +1,6 @@
 name: Terraform CI/CD
 
 on:
-  # pull_request:
-  #   branches:
-  #     - main
   push:
     branches:
       - main
@@ -47,18 +44,12 @@ jobs:
         run: terraform fmt -check
         working-directory: terraform/
 
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -out=tfplan
-      #   working-directory: terraform/
-
       - name: Apply Cluster (Phase 1)
         run: terraform apply -target=exoscale_sks_cluster.my_sks_cluster -auto-approve
         working-directory: terraform/
 
       - name: Extract Kubeconfig
         id: extract
-        continue-on-error: true
         run: |
           CLUSTER_NAME=$(exo compute sks list --zone at-vie-2 --output-format json | jq -r '.[0].name')
           exo compute sks kubeconfig "$CLUSTER_NAME" admin --zone at-vie-2 > terraform/kubeconfig

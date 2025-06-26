@@ -106,20 +106,13 @@ module "tenants" {
   depends_on = [null_resource.wait_for_kubeconfig]
 }
 
-# Kubernetes Namespace für den Mandanten
-resource "kubernetes_namespace" "ingress_ns" {
-  metadata {
-    name = var.namespace_name_nginx
+module "ingress" {
+  source               = "./modules/ingress"
+  namespace_name_ingress = var.namespace_name_ingress
+  providers = {
+    exoscale   = exoscale
+    kubernetes = kubernetes.cluster
   }
 
-  depends_on = [local_sensitive_file.kubeconfig]
-}
-
-resource "helm_release" "ingress_nginx" {
-  name       = "ingress-nginx"
-  repository = "https://kubernetes.github.io/ingress-nginx"
-  chart      = "ingress-nginx"
-  namespace  = var.namespace_name_nginx
-
-  depends_on = [kubernetes_namespace.ingress_ns]
+  depends_on = [null_resource.wait_for_kubeconfig]
 }
