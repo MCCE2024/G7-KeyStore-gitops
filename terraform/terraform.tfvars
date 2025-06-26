@@ -19,5 +19,11 @@ tenants = {
     db_name        = "tenant-c-db"
     secret_name    = "tenant-c-db-secret"
     exoscale_zone  = "at-vie-2"
+  },
+  tenant-d = {
+    namespace_name = "tenant-d"
+    db_name        = "tenant-d-db"
+    secret_name    = "tenant-d-db-secret"
+    exoscale_zone  = "at-vie-2"
   }
 }
