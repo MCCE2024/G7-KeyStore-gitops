@@ -87,6 +87,26 @@ resource "null_resource" "wait_for_kubeconfig" {
   depends_on = [local_sensitive_file.kubeconfig]
 }
 
+resource "exoscale_security_group_rule" "http" {
+  security_group_id = exoscale_security_group.my_sks_security_group.id
+  description       = "Allow HTTP"
+  type              = "INGRESS"
+  protocol          = "TCP"
+  start_port        = 80
+  end_port          = 80
+  cidr              = "0.0.0.0/0"
+}
+
+resource "exoscale_security_group_rule" "https" {
+  security_group_id = exoscale_security_group.my_sks_security_group.id
+  description       = "Allow HTTPS"
+  type              = "INGRESS"
+  protocol          = "TCP"
+  start_port        = 443
+  end_port          = 443
+  cidr              = "0.0.0.0/0"
+}
+
 # Jetzt deine Tenants als Module einbinden
 
 module "tenants" {
