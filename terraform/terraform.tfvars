@@ -1,4 +1,4 @@
-cluster_name           = "key-store-cluster"
+cluster_name           = "keystore-cluster"
 namespace_name_ingress = "ingress"
 
 tenants = {
