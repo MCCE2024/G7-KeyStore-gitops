@@ -17,7 +17,7 @@ resource "exoscale_sks_nodepool" "my_sks_nodepool" {
   instance_type = "standard.medium"
   size          = 3
   security_group_ids = [
-  exoscale_security_group.my_sks_security_group.id]
+  exoscale_security_group.keystore_security_group.id]
 }
 
 resource "exoscale_sks_kubeconfig" "my_sks_kubeconfig" {
@@ -35,34 +35,34 @@ resource "local_sensitive_file" "kubeconfig" {
 }
 
 # (ad-hoc security group)
-resource "exoscale_security_group" "my_sks_security_group" {
+resource "exoscale_security_group" "keystore_security_group" {
   name = "keystore-security-group"
 }
 
 resource "exoscale_security_group_rule" "kubelet" {
-  security_group_id = exoscale_security_group.my_sks_security_group.id
+  security_group_id = exoscale_security_group.keystore_security_group.id
   description       = "Kubelet"
   type              = "INGRESS"
   protocol          = "TCP"
   start_port        = 10250
   end_port          = 10250
   # (beetwen worker nodes only)
-  user_security_group_id = exoscale_security_group.my_sks_security_group.id
+  user_security_group_id = exoscale_security_group.keystore_security_group.id
 }
 
 resource "exoscale_security_group_rule" "calico_vxlan" {
-  security_group_id = exoscale_security_group.my_sks_security_group.id
+  security_group_id = exoscale_security_group.keystore_security_group.id
   description       = "VXLAN (Calico)"
   type              = "INGRESS"
   protocol          = "UDP"
   start_port        = 4789
   end_port          = 4789
   # (beetwen worker nodes only)
-  user_security_group_id = exoscale_security_group.my_sks_security_group.id
+  user_security_group_id = exoscale_security_group.keystore_security_group.id
 }
 
 resource "exoscale_security_group_rule" "nodeport_tcp" {
-  security_group_id = exoscale_security_group.my_sks_security_group.id
+  security_group_id = exoscale_security_group.keystore_security_group.id
   description       = "Nodeport TCP services"
   type              = "INGRESS"
   protocol          = "TCP"
@@ -73,7 +73,7 @@ resource "exoscale_security_group_rule" "nodeport_tcp" {
 }
 
 resource "exoscale_security_group_rule" "nodeport_udp" {
-  security_group_id = exoscale_security_group.my_sks_security_group.id
+  security_group_id = exoscale_security_group.keystore_security_group.id
   description       = "Nodeport UDP services"
   type              = "INGRESS"
   protocol          = "UDP"
@@ -88,7 +88,7 @@ resource "null_resource" "wait_for_kubeconfig" {
 }
 
 resource "exoscale_security_group_rule" "http" {
-  security_group_id = exoscale_security_group.my_sks_security_group.id
+  security_group_id = exoscale_security_group.keystore_security_group.id
   description       = "Allow HTTP"
   type              = "INGRESS"
   protocol          = "TCP"
@@ -98,7 +98,7 @@ resource "exoscale_security_group_rule" "http" {
 }
 
 resource "exoscale_security_group_rule" "https" {
-  security_group_id = exoscale_security_group.my_sks_security_group.id
+  security_group_id = exoscale_security_group.keystore_security_group.id
   description       = "Allow HTTPS"
   type              = "INGRESS"
   protocol          = "TCP"
