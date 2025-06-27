@@ -36,7 +36,7 @@ resource "local_sensitive_file" "kubeconfig" {
 
 # (ad-hoc security group)
 resource "exoscale_security_group" "my_sks_security_group" {
-  name = "my-sks-security-group"
+  name = "keystore-security-group"
 }
 
 resource "exoscale_security_group_rule" "kubelet" {
