@@ -73,6 +73,18 @@ securityContext:
   }
 ```
 3. Nachdem die beiden Änderungen auf dem Main-Branch gepusht wurden, wird der in [Workflow](##🚀Workflow) dargestellte Workflow ausgeführt. Es wird automatisiert die Datenbank in Exoscale provisioniert und die Secrets in K8S in einen eigenen Namespace hinterlegt. Daraufhin deployt ArgoCD den Helm-Chart in den Namespace, wodurch die Application läuft.
-   
+
+---
+
+## ✅ Installation
+
+Wenn man das Repository klont, und bei sich selbst in Github hostet, muss lediglich das Exoscale-Keypair bestehend aus API-Key und API-Secret in die Repository Settings hinterlegt werden. Dafür unter Exoscale -> IAM -> Keys -> einen neuen Key mit Admin-Rechten hinzufügen und die angezeigten Secrets daraufhin mit den folgenden Identifiern in die Github Action Secrets hinterlegen.
+
+| Identifier         | Beschreibung                                           |
+|--------------------|--------------------------------------------------------|
+| **EXOSCALE_KEY**     | Exoscale API-Key     |
+| **EXOSCALE_SECRET**         | Exoscale API-Secret    |
+
+## 📌 Wo hatten wir unsere Probleme / Was wurde nicht fertig?
 
 
