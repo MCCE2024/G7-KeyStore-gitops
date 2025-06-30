@@ -78,13 +78,28 @@ securityContext:
 
 ## ✅ Installation
 
-Wenn man das Repository klont, und bei sich selbst in Github hostet, muss lediglich das Exoscale-Keypair bestehend aus API-Key und API-Secret in die Repository Settings hinterlegt werden. Dafür unter Exoscale -> IAM -> Keys -> einen neuen Key mit Admin-Rechten hinzufügen und die angezeigten Secrets daraufhin mit den folgenden Identifiern in die Github Action Secrets hinterlegen.
+Wenn man das Repository klont, und bei sich selbst in Github hostet, muss lediglich das Exoscale-Keypair bestehend aus API-Key und API-Secret in die Repository Settings hinterlegt werden. Dafür unter Exoscale -> IAM -> Keys -> einen neuen Key mit Admin-Rechten hinzufügen und die angezeigten Secrets daraufhin mit den folgenden Identifiern in die Github Action Secrets hinterlegen. Die einzelnen Secrets für die OAuth2-Authentication müssen ebenfalls hinterlegt werden. Hier der offizielle Guide: 
+> https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app
 
 | Identifier         | Beschreibung                                           |
 |--------------------|--------------------------------------------------------|
 | **EXOSCALE_KEY**     | Exoscale API-Key     |
 | **EXOSCALE_SECRET**         | Exoscale API-Secret    |
+| **OAUTH2_CLIENT_ID**         | OAuth-2-Client-Id des Github-Providers    |
+| **OAUTH2_CLIENT_SECRET**         | Oauth-2-Secret des Github-Providers.   |
+| **OAUTH2_COOKIE_SECRET**         | Oauth-2-Cookie-Secret (Base-64 Encoded Secret)   |
 
 ## 📌 Wo hatten wir unsere Probleme / Was wurde nicht fertig?
+
+## Screenshots
+![Deployte Datenbank in Exoscale](https://github.com/user-attachments/assets/0bb19e9e-e04d-4c02-921b-4273090b056e)
+![Tenant-Frontend](https://github.com/user-attachments/assets/0eda2e44-d5fb-4793-b87e-27c2fcf9522c)
+![ArgoCD - Überblick](https://github.com/user-attachments/assets/b798716a-777a-4d98-b715-ccbb2e9a56c2)
+![ArgoCD - Deployter Tenant](https://github.com/user-attachments/assets/456353cf-72e3-4988-a166-051bbe804582)
+
+
+
+
+
 
 
