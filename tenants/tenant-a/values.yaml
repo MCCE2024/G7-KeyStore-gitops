@@ -1,0 +1,23 @@
+tenantName: tenant-a
+
+images:
+  order:
+    repository: docker.io/bennimoser/k8s-multi-tenant-order-service
+    tag: "20250626214519"
+  inventory:
+    repository: docker.io/bennimoser/k8s-multi-tenant-inventory
+    tag: "20250626214520"
+  frontend:
+    repository: docker.io/bennimoser/k8s-multi-tenant-frontend
+    tag: "20250626214519"
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
