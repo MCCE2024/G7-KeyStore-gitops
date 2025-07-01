@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: images.frontend.repository
+    value: docker.io/bennimoser/k8s-multi-tenant-frontend
+    forcestring: true
+  - name: images.frontend.tag
+    value: latest
+    forcestring: true
