@@ -28,7 +28,7 @@ resource "helm_release" "argo_cd" {
         }
         repositories = [
           {
-            url      = "https://github.com/phwildzeiss/KeyStore-gitops"
+            url      = "https://github.com/MCCE2024/G7-KeyStore-gitops"
             username = var.git_username
             password = var.git_token
           }
@@ -39,7 +39,7 @@ resource "helm_release" "argo_cd" {
 }
 
 locals {
-  repo_url      = "https://github.com/phwildzeiss/KeyStore-gitops.git"
+  repo_url      = "https://github.com/MCCE2024/G7-KeyStore-gitops.git"
   repo_path     = "argocd"
   app_name      = "gitops-base"
   app_namespace = "argocd"
