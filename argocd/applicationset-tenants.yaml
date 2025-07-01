@@ -36,7 +36,8 @@ spec:
         path: helm-app                          # Chart-Verzeichnis
         helm:
           valueFiles:
-            - '../{{path}}/values.yaml'            # Tenant-spezifische Werte
+            - '../tenants/{{path.basename}}/values.yaml'            # Tenant-spezifische Werte
+          parameters: []  # ArgoCD Image Updater überschreibt diese automatisch
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{path.basename}}'          # z. B. tenant-a
