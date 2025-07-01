@@ -80,6 +80,7 @@ resource "helm_release" "argo_cd_image_updater" {
     yamlencode({
       config = {
         interval  = "2m"
+        log_level = "debug"
       }
 
       git = {
@@ -108,9 +109,21 @@ resource "helm_release" "argo_cd_image_updater" {
         ]
       }
 
+      commandArgs = [
+        "--loglevel=debug",
+        "--dry-run=false"
+      ]
+
       image = {
         tag = "v0.16.0"
       }
+
+      extraEnv = [
+        {
+          name  = "LOG_LEVEL"
+          value = "debug"
+        }
+      ]
 
       serviceAccount = {
         create      = true
