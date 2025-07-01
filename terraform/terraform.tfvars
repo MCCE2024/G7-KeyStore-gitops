@@ -1,5 +1,6 @@
 cluster_name           = "key-store-cluster"
 namespace_name_ingress = "ingress"
+namespace_name_oauth2  = "oauth-2"
 
 tenants = {
   tenant-a = {
