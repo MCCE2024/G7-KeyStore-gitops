@@ -30,7 +30,7 @@ spec:
       serviceAccountName: {{.Values.tenantName}}-sa
       containers:
         - name: frontend
-          image: bennimoser/k8s-multi-tenant-frontend
+          image: "{{ .Values.images.frontend.repository }}:{{ .Values.images.frontend.tag }}"
           ports:
             - containerPort: 8080
           envFrom:

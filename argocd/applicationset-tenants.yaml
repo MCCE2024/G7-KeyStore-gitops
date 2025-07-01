@@ -14,6 +14,22 @@ spec:
   template:
     metadata:
       name: '{{path.basename}}-app'
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: frontend=docker.io/bennimoser/k8s-multi-tenant-frontend, inventory=docker.io/bennimoser/k8s-multi-tenant-inventory, order=docker.io/bennimoser/k8s-multi-tenant-order-service
+        argocd-image-updater.argoproj.io/frontend.helm.image-name: images.frontend.repository
+        argocd-image-updater.argoproj.io/frontend.helm.image-tag: images.frontend.tag
+        argocd-image-updater.argoproj.io/frontend.update-strategy: newest-build
+        argocd-image-updater.argoproj.io/inventory.helm.image-name: images.inventory.repository
+        argocd-image-updater.argoproj.io/inventory.helm.image-tag: images.inventory.tag
+        argocd-image-updater.argoproj.io/inventory.update-strategy: newest-build
+        argocd-image-updater.argoproj.io/order.helm.image-name: images.order.repository
+        argocd-image-updater.argoproj.io/order.helm.image-tag: images.order.tag
+        argocd-image-updater.argoproj.io/order.update-strategy: newest-build
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/git-branch: main
+        argocd-image-updater.argoproj.io/write-back-path: "../tenants/{{path.basename}}/.argocd-source-{{path.basename}}-app.yaml"
+        argocd-image-updater.argoproj.io/helm-image-policy: enabled
+        argocd-image-updater.argoproj.io/frontend.force-update: "true"
     spec:
       project: default
       source:
@@ -22,7 +38,8 @@ spec:
         path: helm-app                          # Chart-Verzeichnis
         helm:
           valueFiles:
-            - '../{{path}}/values.yaml'            # Tenant-spezifische Werte
+            - '../tenants/{{path.basename}}/values.yaml'            # Tenant-spezifische Werte
+          parameters: []  # ArgoCD Image Updater überschreibt diese automatisch
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{path.basename}}'          # z. B. tenant-a
@@ -30,3 +47,4 @@ spec:
         automated:
           prune: true
           selfHeal: true
+          allowEmpty: true
