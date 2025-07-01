@@ -58,7 +58,7 @@ variable "oauth2_client_secret" {
   description = "Client Secret of oauth2 authenticator"
 }
 
-variable "oauth2_cookie_secret"{
+variable "oauth2_cookie_secret" {
   sensitive   = true
   type        = string
   description = "Cookie Secret for oauth2 proxy"
