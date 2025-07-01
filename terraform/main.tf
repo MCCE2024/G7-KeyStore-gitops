@@ -137,10 +137,25 @@ module "ingress" {
   depends_on = [null_resource.wait_for_kubeconfig]
 }
 
+
 module "argocd" {
   source       = "./modules/argocd"
   git_username = var.git_username
   git_token    = var.git_token
+  providers = {
+    exoscale   = exoscale
+    kubernetes = kubernetes.cluster
+  }
+
+  depends_on = [null_resource.wait_for_kubeconfig]
+}
+  
+module "oauth2"{
+  source = "./modules/oauth-2"
+  namespace_name_oauth2 = var.namespace_name_oauth2
+  oauth2_client_id      = var.oauth2_client_id
+  oauth2_client_secret  = var.oauth2_client_secret
+  oauth2_cookie_secret  = var.oauth2_cookie_secret
   providers = {
     exoscale   = exoscale
     kubernetes = kubernetes.cluster

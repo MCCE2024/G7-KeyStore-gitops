@@ -12,6 +12,9 @@ jobs:
     env:
       TF_VAR_exoscale_key: ${{ secrets.EXOSCALE_KEY }}
       TF_VAR_exoscale_secret: ${{ secrets.EXOSCALE_SECRET }}
+      TF_VAR_oauth2_client_id: ${{ secrets.OAUTH2_CLIENT_ID }}
+      TF_VAR_oauth2_client_secret: ${{ secrets.OAUTH2_CLIENT_SECRET }}
+      TF_VAR_oauth2_cookie_secret: ${{ secrets.OAUTH2_COOKIE_SECRET }}
       AWS_ACCESS_KEY_ID: ${{ secrets.EXOSCALE_KEY }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.EXOSCALE_SECRET }}
       EXOSCALE_API_KEY: ${{ secrets.EXOSCALE_KEY }}
