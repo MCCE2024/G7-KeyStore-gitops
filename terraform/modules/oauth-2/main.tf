@@ -22,28 +22,31 @@ resource "helm_release" "oauth2_proxy" {
   chart      = "oauth2-proxy"
   namespace  = var.namespace_name_oauth2
 
-  values = [
-    <<-EOF
-    config:
-      clientID: "${var.oauth2_client_id}"
-      clientSecret: "${var.oauth2_client_secret}"
-      cookieSecret: "${var.oauth2_cookie_secret}"
-      provider: "github"
-      upstream=file:///dev/null
-      http-address=0.0.0.0:4180
-      redirect-url=http://fhb-key.store/oauth2/callback
-      emailDomains:
-        - "*"
+ values = [
+  yamlencode({
+    config = {
+      clientID     = var.oauth2_client_id
+      clientSecret = var.oauth2_client_secret
+      cookieSecret = var.oauth2_cookie_secret
+    }
 
-    ingress:
-      enabled: true
-      className: "nginx"
-      annotations: {}
-      path: /oauth2
-      pathType: Prefix
-      hosts:
-        - fhb-key.store
-      servicePort: 4180
-    EOF
-  ]
+    extraArgs = {
+      provider       = "github"
+      upstream       = "file:///dev/null"
+      http-address   = "0.0.0.0:4180"
+      redirect-url   = "http://fhb-key.store/oauth2/callback"
+      email-domain   = "*"
+    }
+
+    ingress = {
+      enabled   = true
+      className = "nginx"
+      annotations = {}
+      path      = "/oauth2"
+      pathType  = "Prefix"
+      hosts     = ["fhb-key.store"]
+      servicePort = "http" # oder 4180, je nach Chart
+    }
+  })
+]
 }
