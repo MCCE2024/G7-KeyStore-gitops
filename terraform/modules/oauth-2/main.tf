@@ -35,6 +35,8 @@ resource "helm_release" "oauth2_proxy" {
         upstream     = "file:///dev/null"
         http-address = "0.0.0.0:4180"
         redirect-url = "http://fhb-key.store/oauth2/callback"
+        cookie-secure = false
+        scope = "user:email"
         email-domain = "*"
       }
 
