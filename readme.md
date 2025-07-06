@@ -171,8 +171,7 @@ Vorteil: ArgoCD pusht den aktuellen Stand der verwendeten Images direkt ins Repo
 Unsere Applikation läuft erfolgreich auf dem Kubernetes Cluster und ist erreichbar.
 
 **Aktuelles Problem:**  
-Beim Wechseln auf Unterseiten im Frontend funktioniert das Routing nicht korrekt.  
-Die Startseite ist erreichbar, aber beim Navigieren auf andere Seiten erfolgt kein korrektes Routing. Klickt man in ArgoCD beim Ingress auf den Link-Button, wird zwar die Startseite in einem neuen Tab geöffnet, jedoch wird das CSS und JavaScript nicht geladen. Hierzu muss am Ende ein `/` hinzugefügt werden.
+Beim Wechseln auf Unterseiten im Frontend funktionierte das Routing nicht korrekt. Hierfür musste explizit beim Routing auf die weiteren Seiten auf das Präfix in der Route geachtet werden und dieses berücksichtigt werden. Zusätzlich musste das Präfix über eine Environment-Variable gesetzt werden, damit das dynamische konfigurieren des Routings korrekt funktioniert.
 
 ## Screenshots
 
