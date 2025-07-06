@@ -10,7 +10,7 @@ helm:
     value: docker.io/bennimoser/k8s-multi-tenant-inventory
     forcestring: true
   - name: images.inventory.tag
-    value: "20250701195150"
+    value: "20250706094436"
     forcestring: true
   - name: images.order.repository
     value: docker.io/bennimoser/k8s-multi-tenant-order-service
