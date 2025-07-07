@@ -189,6 +189,7 @@ app.UsePathBase($"/{AppName}");
 ## Screenshots
 
 ![Deployte Datenbank in Exoscale](https://github.com/user-attachments/assets/0bb19e9e-e04d-4c02-921b-4273090b056e)
+![OAuth2-Authentication](https://github.com/user-attachments/assets/77244547-0f06-44d1-9c15-c499b6a3f883)
 ![Tenant-Frontend](https://github.com/user-attachments/assets/0eda2e44-d5fb-4793-b87e-27c2fcf9522c)
 ![ArgoCD - Überblick](https://github.com/user-attachments/assets/b798716a-777a-4d98-b715-ccbb2e9a56c2)
 ![ArgoCD - Deployter Tenant](https://github.com/user-attachments/assets/456353cf-72e3-4988-a166-051bbe804582)
