@@ -170,8 +170,21 @@ Vorteil: ArgoCD pusht den aktuellen Stand der verwendeten Images direkt ins Repo
 
 Unsere Applikation läuft erfolgreich auf dem Kubernetes Cluster und ist erreichbar.
 
-**Aktuelles Problem:**  
-Beim Wechseln auf Unterseiten im Frontend funktionierte das Routing nicht korrekt. Hierfür musste explizit beim Routing auf die weiteren Seiten auf das Präfix in der Route geachtet werden und dieses berücksichtigt werden. Zusätzlich musste das Präfix über eine Environment-Variable gesetzt werden, damit das dynamische konfigurieren des Routings korrekt funktioniert.
+**Problem:**  
+Beim Wechseln auf Unterseiten im Frontend funktionierte das Routing nicht korrekt.
+
+**Lösungsschritte:**
+
+Hierfür musste explizit beim Routing auf die weiteren Seiten auf das Präfix in der Route geachtet werden und dieses berücksichtigt werden. Zusätzlich musste das Präfix über eine Environment-Variable gesetzt werden, damit das dynamische konfigurieren des Routings korrekt funktioniert.
+```csharp
+// Setzen des Basis-Pfads auf die Environment-Variable (Views)
+app.UsePathBase($"/{AppName}");
+```
+
+```razor
+# Setzen des Basis-Pfads auf die Environment-Variable (Resourcen)
+<base href="/@Frontend.Program.AppName/" />
+```
 
 ## Screenshots
 
